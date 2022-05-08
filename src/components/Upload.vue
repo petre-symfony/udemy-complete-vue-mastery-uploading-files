@@ -16,7 +16,7 @@
 				@dragover.prevent.stop="is_dragover = true"
 				@dragenter.prevent.stop="is_dragover = true"
 				@dragleave.prevent.stop="is_dragover = false"
-				@drop.prevent.stop=""
+				@drop.prevent.stop="upload"
 			>
 				<h5>Drop your files here</h5>
 			</div>
@@ -49,6 +49,11 @@ export default {
 	data() {
 		return {
 			is_dragover: false
+		}
+	},
+	methods: {
+		upload() {
+			this.is_dragover = false;
 		}
 	}
 }
