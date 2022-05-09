@@ -55,7 +55,14 @@ export default {
 		upload($event) {
 			this.is_dragover = false;
 
-			const { files } = $event.dataTransfer;
+			const files = [...$event.dataTransfer.files];
+			
+			files.forEach((file) => {
+				if (file.type !== 'audio/mpeg') {
+					return;
+				}
+			});
+
 			console.log(files);
 		}
 	}
