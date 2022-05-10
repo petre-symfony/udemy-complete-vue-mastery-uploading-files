@@ -10,7 +10,7 @@
 			</button>
 		</div>
 		<div v-show="showForm">
-			<vee-form :validation-schema="schema">
+			<vee-form :validation-schema="schema" :initial-values="song" @submit="edit">
 				<div class="mb-3">
 					<label class="inline-block mb-2">Song Title</label>
 					<vee-field type="text" name="modified_name"
@@ -54,6 +54,11 @@ export default {
 				modified_name: 'required',
 				genre: 'alpha_spaces'
 			}
+		}
+	},
+	methods: {
+		edit() {
+			console.log('Song edited');
 		}
 	}
 }
