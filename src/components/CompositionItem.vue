@@ -10,7 +10,7 @@
 			</button>
 		</div>
 		<div v-show="showForm">
-			<div class="text-white text-center font-bold p-4 mb-4" v-if="show_alert" :class="alert_message">
+			<div class="text-white text-center font-bold p-4 mb-4" v-if="show_alert" :class="alert_variant">
 				{{ alert_message }}
 			</div>
 			<vee-form :validation-schema="schema" :initial-values="song" @submit="edit">
@@ -54,6 +54,14 @@ export default {
 		song: {
 			type: Object,
 			required: true
+		},
+		updateSong: {
+			type: Function,
+			required: true
+		},
+		index: {
+			type: Number,
+			required: true
 		}
 	},
 	data() {
@@ -84,6 +92,8 @@ export default {
 				this.alert_message = 'Something went wrong. Try again later';
 				return;
 			}
+
+			this.updateSong(this.index, values);
 
 			this.in_submission = false;
 			this.alert_variant = 'bg-green-500';
