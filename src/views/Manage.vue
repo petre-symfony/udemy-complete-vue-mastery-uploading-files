@@ -14,6 +14,7 @@
 						<composition-item v-for="(song, i) in songs" :key="song.docID"
 					    :song="song" :updateSong="updateSong" :index="i"
 							:removeSong="removeSong"
+							:updateUnsavedFlag="updateUnsavedFlag"
 						/>
 					</div>
 				</div>
@@ -35,7 +36,8 @@ export default {
 	},
 	data(){
 		return {
-			songs: []
+			songs: [],
+			unsavedFlag: false
 		}
 	},
 	async created() {
@@ -58,7 +60,13 @@ export default {
 			}
 
 			this.songs.push(song);
+		},
+		updateUnsavedFlag(value) {
+			this.unsavedFlag = value;
 		}
+	},
+	beforeRouteLeave(to, from, next) {
+
 	}
 	/*beforeRouteLeave(to, from , next) {
 		this.$refs.upload.cancelUploads();
